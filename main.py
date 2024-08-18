@@ -22,6 +22,7 @@ out_temp = 0
 out_humidity = 0
 
 def display_data():
+    global time, temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
     print('-'*50)
     print(f'Time: {time}sec')
     print(f'Temperture: {temperture}°C')
@@ -38,6 +39,7 @@ def display_data():
 
 
 def treat_data():
+    global time, temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
     try:
         time = float(time)
         temperture = float(temperture)
