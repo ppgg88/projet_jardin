@@ -38,21 +38,23 @@ def display_data():
 
 
 def treat_data():
-    time = float(time)
-    temperture = float(temperture)
-    humidity = float(humidity)
-    luminosity = float(luminosity)
+    try:
+        time = float(time)
+        temperture = float(temperture)
+        humidity = float(humidity)
+        luminosity = float(luminosity)
 
-    pluvio_time = float(pluvio_time)
-    wind = float(wind)
-    pression = float(pression)
-    soil_temp = float(soil_temp)
+        pluvio_time = float(pluvio_time)
+        wind = float(wind)
+        pression = float(pression)
+        soil_temp = float(soil_temp)
 
-    soil_humidity = float(soil_humidity)
-    girus = float(girus)
-    out_temp = float(out_temp)
-    out_humidity = float(out_humidity)
-
+        soil_humidity = float(soil_humidity)
+        girus = float(girus)
+        out_temp = float(out_temp)
+        out_humidity = float(out_humidity)
+    except ValueError:
+        return
 
 
 while True:
