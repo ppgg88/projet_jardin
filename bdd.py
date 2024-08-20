@@ -34,7 +34,7 @@ conn.commit()
 
 
 def insert_data_capteurs(Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity):
-    cursor.execute('''INSERT INTO capteurs (time, Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (int(time.time()), Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity))
+    cursor.execute('''INSERT INTO capteurs (id, time, Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (0, int(time.time()), Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity))
     conn.commit()
 
 
