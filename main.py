@@ -77,6 +77,7 @@ while True:
         try:
             data = data.decode('utf-8').strip()
             if len(data) and data[0] == 'S' and data[-1] == 'E':
+                types_trame = int(data[1])
                 if data[1] == '1':
                     data = data[3:-1].split(';')
                     t = data[0]
@@ -95,7 +96,7 @@ while True:
                     girus = data[1]
                     out_temp = data[2]
                     out_humidity = data[3]
-                treat_data(int(data[1]))
+                treat_data(types_trame)
                 display_data()
         except UnicodeDecodeError:
             pass
