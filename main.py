@@ -47,7 +47,7 @@ def save_data():
 def treat_data():
     global time, temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
     try:
-        time = float(time)
+        t = float(t)
         temperture = float(temperture)
         humidity = float(humidity)
         luminosity = 1024-float(luminosity)
@@ -77,7 +77,7 @@ while True:
             if len(data) and data[0] == 'S' and data[-1] == 'E':
                 if data[1] == '1':
                     data = data[3:-1].split(';')
-                    time = data[0]
+                    t = data[0]
                     temperture = data[1]
                     humidity = data[2]
                     luminosity = data[3]
