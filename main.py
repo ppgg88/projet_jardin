@@ -45,7 +45,7 @@ def save_data():
     bdd.insert_data_capteurs(temperture, out_temp, soil_temp, humidity, out_humidity, soil_humidity, pression, girus, wind, luminosity)
 
 def treat_data():
-    global time, temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
+    global t, temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
     try:
         t = float(t)
         temperture = float(temperture)
