@@ -1,10 +1,11 @@
 import serial
-
+import bdd
+import time
 
 ser = serial.Serial('/dev/ttyUSB0', 115200)
 
 #S1
-time = 0
+t = 0
 temperture = 0
 humidity = 0
 luminosity = 0
@@ -21,10 +22,11 @@ girus = 0
 out_temp = 0
 out_humidity = 0
 
+
 def display_data():
-    global time, temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
+    global t, temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
     print('-'*50)
-    print(f'Time: {time}sec')
+    print(f'Time: {t}sec')
     print(f'Temperture: {temperture}°C')
     print(f'Humidity: {humidity}%')
     print(f'Luminosity: {luminosity}')
@@ -38,13 +40,17 @@ def display_data():
     print(f'Out Humidity: {out_humidity}')
 
 
+def save_data():
+    global temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
+    bdd.insert_data_capteurs(temperture, out_temp, soil_temp, humidity, out_humidity, soil_humidity, pression, girus, wind, luminosity)
+
 def treat_data():
     global time, temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
     try:
         time = float(time)
         temperture = float(temperture)
         humidity = float(humidity)
-        luminosity = float(luminosity)
+        luminosity = 1024-float(luminosity)
 
         pluvio_time = float(pluvio_time)
         wind = float(wind)
@@ -59,7 +65,11 @@ def treat_data():
         return
 
 
+last_save = time.time()
 while True:
+    if time.time() - last_save > 10:
+        save_data()
+        last_save = time.time()
     if ser.in_waiting > 0:
         data = ser.read_until(b'\n')
         try:
