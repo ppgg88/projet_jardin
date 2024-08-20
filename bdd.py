@@ -34,7 +34,13 @@ conn.commit()
 
 
 def insert_data_capteurs(Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity):
-    cursor.execute('''INSERT INTO capteurs (id, time, Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (0, int(time.time()), Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity))
+    #get max id : 
+    cursor.execute('''SELECT MAX(id) FROM capteurs''')
+    max_id = cursor.fetchone()[0]
+    if max_id is None:
+        max_id = -1
+
+    cursor.execute('''INSERT INTO capteurs (id, time, Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (max_id+1, int(time.time()), Tserre, Text, Tsol, Hserre, Hext, Hsol, P, girus, windspeed, luminosity))
     conn.commit()
 
 
