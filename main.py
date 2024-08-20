@@ -44,23 +44,25 @@ def save_data():
     global temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
     bdd.insert_data_capteurs(temperture, out_temp, soil_temp, humidity, out_humidity, soil_humidity, pression, girus, wind, luminosity)
 
-def treat_data():
+def treat_data(type:int):
     global t, temperture, humidity, luminosity, pluvio_time, wind, pression, soil_temp, soil_humidity, girus, out_temp, out_humidity
     try:
-        t = float(t)
-        temperture = float(temperture)
-        humidity = float(humidity)
-        luminosity = 1024-float(luminosity)
+        if type == 1:
+            t = float(t)
+            temperture = float(temperture)
+            humidity = float(humidity)
+            luminosity = 1024-float(luminosity)
 
-        pluvio_time = float(pluvio_time)
-        wind = float(wind)
-        pression = float(pression)
-        soil_temp = float(soil_temp)
-
-        soil_humidity = float(soil_humidity)
-        girus = float(girus)
-        out_temp = float(out_temp)
-        out_humidity = float(out_humidity)
+        elif type == 2:
+            pluvio_time = float(pluvio_time)
+            wind = float(wind)
+            pression = float(pression)
+            soil_temp = float(soil_temp)
+        elif type == 3:
+            soil_humidity = float(soil_humidity)
+            girus = float(girus)
+            out_temp = float(out_temp)
+            out_humidity = float(out_humidity)
     except ValueError:
         return
 
@@ -93,7 +95,7 @@ while True:
                     girus = data[1]
                     out_temp = data[2]
                     out_humidity = data[3]
-                treat_data()
+                treat_data(int(data[1]))
                 display_data()
         except UnicodeDecodeError:
             pass
